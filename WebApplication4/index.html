@@ -9,6 +9,7 @@
     <input type="text" id="searchID" />
     <button onclick="searchContact()">Search</button>
     <button onclick="addContact()">Add</button>
+    <button onclick="putContact()">Put</button>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -28,11 +29,27 @@
             });
         }
 
+        function putContact() {
+            var changedContact = {
+                "FirstName": "Spiderman"
+            }
+
+            $.ajax({
+                type: "PUT",
+                dataType: "json",
+                url: "api/Contact/0",
+                data: changedContact,
+                success: function (result) {
+                    console.info(result);
+                }
+            });
+        }
+
         function addContact() {
             var newContact = {
                 "Id": 0,
                 "FirstName": "Tony",
-                "LastName" : "Stark"
+                "LastName": "Stark"
             }
 
             $.ajax({

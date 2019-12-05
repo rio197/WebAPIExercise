@@ -48,8 +48,16 @@ namespace WebApplication4.Controllers
         }
 
         // PUT: api/Contact/5
-        public void Put(int id, [FromBody]string value)
+        public IEnumerable<Contact> Put(int id, [FromBody]Contact changedContact)
         {
+            Contact contact = contacts.FirstOrDefault<Contact>(c => c.Id == id);
+            if(contact != null)
+            {
+                contact.FirstName = changedContact.FirstName;
+                contact.LastName = changedContact.LastName;
+            }
+
+            return contacts;
         }
 
         // DELETE: api/Contact/5
