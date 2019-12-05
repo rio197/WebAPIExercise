@@ -18,12 +18,14 @@ namespace WebApplication4.Controllers
         };
 
         // GET: api/Contact
+        [Route("api/Contact")]
         public IEnumerable<Contact> Get()
         {
             return contacts;
         }
 
         // GET: api/Contact/5
+        [Route("api/Contact/{id:int}")]
         public IHttpActionResult Get(int id)
         {
             Contact contact = contacts.FirstOrDefault<Contact>(c => c.Id == id);
@@ -36,7 +38,9 @@ namespace WebApplication4.Controllers
             return Ok(contact);
         }
 
-        public IEnumerable<Contact> GetContactByName(string name)
+        [Route("api/Contact/{name}")]
+        [HttpGet]
+        public IEnumerable<Contact> FindContactByName(string name)
         {
             Contact[] contactArray = contacts.Where<Contact>(c => c.FirstName.Contains(name)).ToArray<Contact>();
 
