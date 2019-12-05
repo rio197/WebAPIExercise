@@ -61,8 +61,10 @@ namespace WebApplication4.Controllers
         }
 
         // DELETE: api/Contact/5
-        public void Delete(int id)
+        public IEnumerable<Contact> Delete(int id)
         {
+            contacts = contacts.Where<Contact>(c => c.Id != id).ToArray<Contact>();
+            return contacts;
         }
     }
 }

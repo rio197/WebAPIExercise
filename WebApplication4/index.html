@@ -10,6 +10,7 @@
     <button onclick="searchContact()">Search</button>
     <button onclick="addContact()">Add</button>
     <button onclick="putContact()">Put</button>
+    <button onclick="deleteContact()">Delete</button>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -23,6 +24,17 @@
                 type: "GET",
                 dataType: "json",
                 url: "api/Contact" + $("#searchID").val(),
+                success: function (result) {
+                    console.info(result);
+                }
+            });
+        }
+
+        function deleteContact() {
+            $.ajax({
+                type: "DELETE",
+                dataType: "json",
+                url: "api/Contact/0",
                 success: function (result) {
                     console.info(result);
                 }
@@ -61,6 +73,8 @@
                     console.info(result);
                 }
             });
+
+
         }
     </script>
 </body>
