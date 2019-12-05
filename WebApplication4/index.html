@@ -23,7 +23,7 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                url: "api/Contact" + $("#searchID").val(),
+                url: "api/Contact/?name=" + $("#searchID").val(),
                 success: function (result) {
                     console.info(result);
                 }
@@ -73,8 +73,6 @@
                     console.info(result);
                 }
             });
-
-
         }
     </script>
 </body>
