@@ -8,6 +8,7 @@ using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
 {
+    [RoutePrefix("api/Contact")]
     public class ContactController : ApiController
     {
         Contact[] contacts = new Contact[]
@@ -18,14 +19,14 @@ namespace WebApplication4.Controllers
         };
 
         // GET: api/Contact
-        [Route("api/Contact")]
+        [Route("")]
         public IEnumerable<Contact> Get()
         {
             return contacts;
         }
 
         // GET: api/Contact/5
-        [Route("api/Contact/{id:int}")]
+        [Route("{id:int}")]
         public IHttpActionResult Get(int id)
         {
             Contact contact = contacts.FirstOrDefault<Contact>(c => c.Id == id);
@@ -38,7 +39,7 @@ namespace WebApplication4.Controllers
             return Ok(contact);
         }
 
-        [Route("api/Contact/{name}")]
+        [Route("{name}")]
         [HttpGet]
         public IEnumerable<Contact> FindContactByName(string name)
         {
@@ -48,6 +49,7 @@ namespace WebApplication4.Controllers
         }
 
         // POST: api/Contact
+        [Route("")]
         public IEnumerable<Contact> Post([FromBody]Contact newContact)
         {
             List<Contact> contactList = contacts.ToList<Contact>();
@@ -59,6 +61,7 @@ namespace WebApplication4.Controllers
         }
 
         // PUT: api/Contact/5
+        [Route("{id:int}")]
         public IEnumerable<Contact> Put(int id, [FromBody]Contact changedContact)
         {
             Contact contact = contacts.FirstOrDefault<Contact>(c => c.Id == id);
@@ -72,6 +75,7 @@ namespace WebApplication4.Controllers
         }
 
         // DELETE: api/Contact/5
+        [Route("{id:int}")]
         public IEnumerable<Contact> Delete(int id)
         {
             contacts = contacts.Where<Contact>(c => c.Id != id).ToArray<Contact>();
